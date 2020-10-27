@@ -57,18 +57,6 @@ function triangularN(num) {
 }
 
 triangularN(5);
-
-//fibannachi
-function fiban(num) {
-  if (num === 1) {
-    return 0;
-  } else if (num === 2) {
-    return 1;
-  } else {
-    return fiban(num - 1) + fiban(num - 2);
-  }
-}
-
 // string splitter
 
 // function stringSplitter(str, split){
@@ -98,6 +86,17 @@ function strSplit(str, char, results = []) {
 strSplit("02/02/2020", "/");
 
 console.log(strSplit("02/20/2020", "/"));
+
+//fibannachi
+function fiban(num) {
+  if (num === 1) {
+    return 0;
+  } else if (num === 2) {
+    return 1;
+  } else {
+    return fiban(num - 1) + fiban(num - 2);
+  }
+}
 
 fiban(6);
 
@@ -158,35 +157,35 @@ function mazeExit(maze, n, m) {
   maze[n][m] = currSpot;
   let path = "";
   switch (" ") {
-    case maze[n][m + 1]:
-      return (path += "R" + mazeExit(maze, n, m + 1));
-      break;
-    case maze[n][m - 1]:
-      return (path += "L" + mazeExit(maze, n, m - 1));
-      break;
-    case maze[n + 1][m]:
-      return (path += "D" + mazeExit(maze, n + 1, m));
-      break;
-    case maze[n - 1][m]:
-      return (path += "U" + mazeExit(maze, n - 1, m));
-      break;
+  case maze[n][m + 1]:
+    return (path += "R" + mazeExit(maze, n, m + 1));
+    break;
+  case maze[n][m - 1]:
+    return (path += "L" + mazeExit(maze, n, m - 1));
+    break;
+  case maze[n + 1][m]:
+    return (path += "D" + mazeExit(maze, n + 1, m));
+    break;
+  case maze[n - 1][m]:
+    return (path += "U" + mazeExit(maze, n - 1, m));
+    break;
   }
   switch ("e") {
-    case maze[n][m + 1]:
-      return (path += "R" + " Completed");
-      break;
-    case maze[n][m - 1]:
-      return (path += "L" + " Completed");
-      break;
-    case maze[n + 1][m]:
-      return (path += "D" + " Completed");
-      break;
-    case maze[n - 1][m]:
-      return (path += "U" + " Completed");
-      break;
-    default:
-      return "There are no more exits";
-      break;
+  case maze[n][m + 1]:
+    return (path += "R" + " Completed");
+    break;
+  case maze[n][m - 1]:
+    return (path += "L" + " Completed");
+    break;
+  case maze[n + 1][m]:
+    return (path += "D" + " Completed");
+    break;
+  case maze[n - 1][m]:
+    return (path += "U" + " Completed");
+    break;
+  default:
+    return "There are no more exits";
+    break;
   }
 }
 mazeExit(maze, 0, 0);
@@ -207,19 +206,15 @@ function anagrams(str) {
 }
 anagrams("east");
 
+function findBinary(num, str = "") {
+  if (num === 0) {
+    return str.split("").reverse().join("") || 0;
+  }
 
-function findBinary(num, str =''){
-  
-  
-  if (num === 0){
-    return str.split("").reverse().join("") || 0
-  } 
-  
-  str += num % 2
-  let newNum = parseInt(num / 2)
+  str += num % 2;
+  let newNum = parseInt(num / 2);
 
-  return findBinary(newNum, str)
- 
+  return findBinary(newNum, str);
 }
 
-findBinary(13)
+findBinary(13);

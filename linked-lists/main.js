@@ -69,21 +69,17 @@ function findLast(list) {
 
 function reverseList(list) {
   let node = list.head;
-  let prev= {};
-  let temp = {};
+  let track = list.head;
+  let temp = null;
 
-  while (node) {
-    if (!prev.next) {
-      prev.next = null;
-    }
-
-    temp = node.next;
-    node.next = prev;
-    prev = node;
-    node = temp;
+  while (node !== null){
+    track = track.next;
+    node.next = temp;
+    temp = node;
+    node = track;
   }
-  list.head = node;
-  return prev;
+
+  list.head = temp;
 }
 
 function threeBehind(list){
@@ -158,6 +154,8 @@ function main() {
   SLL.insertAfter("Jax", SLL.findByValue("Husker"));
   // print the single linked list
   console.log(`// Q3:`);
+  console.log(display(SLL));
+  reverseList(SLL);
   console.log(display(SLL));
   //console.log('Reverse here', reverseList(SLL));
   

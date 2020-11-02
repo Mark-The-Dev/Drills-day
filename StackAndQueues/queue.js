@@ -53,7 +53,7 @@ function display(q) {
   let thisNode = q.first;
   let output = "";
   while (thisNode !== null) {
-    if (thisNode !== q.top) {
+    if (thisNode !== q.first) {
       output += " -> ";
     }
     output += `${thisNode.value}`;
@@ -71,7 +71,7 @@ function pairDancer(arr) {
   let last;
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].includes("Female")) {
-      if(last === "male"){
+      if (last === "male") {
         name = arr[i];
         partners[
           `couple${count}:`
@@ -82,12 +82,12 @@ function pairDancer(arr) {
         last = null;
       } else {
         name = arr[i];
-        last = 'woman';
+        last = "woman";
       }
     }
     if (arr[i].includes("Male")) {
-      if(last === "woman"){
-        if(!isEmpty(spares)){
+      if (last === "woman") {
+        if (!isEmpty(spares)) {
           name2 = spares.dequeue();
         } else {
           name2 = arr[i];
@@ -99,21 +99,42 @@ function pairDancer(arr) {
         name = null;
         name2 = null;
         last = null;
-      } else if(last === 'male'){
+      } else if (last === "male") {
         spares.enqueue(arr[i]);
       } else {
-        if(!isEmpty(spares)){
+        if (!isEmpty(spares)) {
           name2 = spares.dequeue();
         } else {
           name2 = arr[i];
         }
-        last = 'male';
+        last = "male";
       }
-
-    } 
+    }
   }
 
   return partners;
+}
+
+function firstToLast(q) {
+  q.enqueue(q.dequeue());
+}
+// upped fail rate!
+function oBank(q){
+  console.log('Start line',display(q));
+  for (let i=0; i< 10; i++){
+    let d = Math.random();
+    if (d > 0.75){
+      firstToLast(q);
+      console.log(display(q));
+      console.log(`Oh no ${q.last.value} forget their paper work, For that, END OF THE LINE!`);
+    } else {
+      let done = q.first.value;
+      q.dequeue();
+      console.log(display(q));
+      console.log(`Well done! ${done} has left the line`);
+    }
+  }
+  return 'This was 10 people in 10 mins!';
 }
 
 function main() {
@@ -125,23 +146,48 @@ function main() {
   // starTrekQ.enqueue("Sulu");
   // starTrekQ.enqueue("Checkov");
   // console.log(display(starTrekQ));
+  // firstToLast(starTrekQ);
+  // console.log(display(starTrekQ));
+  
+  
+  
+  
   // //console.log(peek(starTrekQ));
   // console.log(isEmpty(starTrekQ));
   // starTrekQ.dequeue();
   // starTrekQ.dequeue();
   // console.log(display(starTrekQ));
   //Q9
-  let dancers = [
-    "Female Jane",
-    "Male Frank",
-    "Male John",
-    "Male Sherlock",
-    "Female Madonna",
-    "Male David",
-    "Male Christopher",
-    "Female Beyonce",
-  ];
-  console.log(pairDancer(dancers));
+  // let dancers = [
+  //   "Female Jane",
+  //   "Male Frank",
+  //   "Male John",
+  //   "Male Sherlock",
+  //   "Female Madonna",
+  //   "Male David",
+  //   "Male Christopher",
+  //   "Female Beyonce",
+  // ];
+  // console.log(pairDancer(dancers));
+  //console.log(Math.random())
+
+
+  //Q10
+
+  let bankers = new Queue;
+  bankers.enqueue('Larry');
+  bankers.enqueue('Jerry');
+  bankers.enqueue('Fairy');
+  bankers.enqueue('Mary');
+  bankers.enqueue('Harry');
+  bankers.enqueue('Scarey');
+  bankers.enqueue('Terry');
+  bankers.enqueue('Gary');
+  bankers.enqueue('Darry');
+  bankers.enqueue('Perry');
+  //console.log(display(bankers));
+  console.log(oBank(bankers));
+
 }
 
 main();

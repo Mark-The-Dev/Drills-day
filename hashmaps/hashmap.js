@@ -140,21 +140,21 @@ function main() {
   let lotr = new HashMap();
   lotr.set("Hobbit", "Bilbo");
   lotr.set("Hobbit", "Frodo");
-  lotr.set("Wizard", "Gandalf");
-  lotr.set("Human", "Aragorn");
-  lotr.set("Elf", "Legolas");
-  lotr.set("Maiar", "The Necromancer");
-  lotr.set("Maiar", "Sauron");
-  lotr.set("RingBearer", "Gollum");
-  lotr.set("LadyOfLight", "Galadriel");
-  lotr.set("HalfElven", "Arwen");
-  lotr.set("Ent", "Treebeard");
+  // lotr.set("Wizard", "Gandalf");
+  // lotr.set("Human", "Aragorn");
+  // lotr.set("Elf", "Legolas");
+  // lotr.set("Maiar", "The Necromancer");
+  // lotr.set("Maiar", "Sauron");
+  // lotr.set("RingBearer", "Gollum");
+  // lotr.set("LadyOfLight", "Galadriel");
+  // lotr.set("HalfElven", "Arwen");
+  // lotr.set("Ent", "Treebeard");
   console.log(lotr);
 
   // Have 9 values, added 11, duplicate keys were reset
 
-  console.log(lotr.get("Maiar"));
-  console.log(lotr.get("Hobbit"));
+  // console.log(lotr.get("Maiar"));
+  // console.log(lotr.get("Hobbit"));
   // Values are the replaced values
   // capacity is 24.
   // console.log('mod here',10%11)
@@ -179,8 +179,8 @@ function main() {
   // logs 'Hello World', 20 and 'Hello World', 10
 
   //Q4
-  console.log(removeDupes("google"));
-  console.log(removeDupes("google all that you think can think of"));
+  // console.log(removeDupes("google"));
+  // console.log(removeDupes("google all that you think can think of"));
 
   // let s = 'acecarr'
   // s = s[s.length - 1] + s.substring(0, s.length - 1);
@@ -191,9 +191,9 @@ function main() {
   // console.log(permPalin('north'));
 
   //Q6
-  console.log(
-    anagramGrp(["east", "cars", "acre", "arcs", "teas", "eats", "race"])
-  );
+  // console.log(
+  //   anagramGrp(["east", "cars", "acre", "arcs", "teas", "eats", "race"])
+  // );
   //ouput ex. [['east', 'teas', 'eats'], ['cars', 'arcs'], ['acre', 'race']]
 }
 

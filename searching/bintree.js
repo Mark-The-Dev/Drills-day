@@ -131,7 +131,7 @@ class BinarySearchTree {
     let values = [];
     const queue = new Queue(); // Assuming a Queue is implemented (refer to previous lesson on Queue)
     const node = tree;
-    console.log(node);
+    
     queue.enqueue(node);
     while (queue.first) {
       const node = queue.dequeue(); //remove from the queue
@@ -208,8 +208,6 @@ function maxProfits(arr, k) {
     profits.push(row);
   }
 
-  //console.log(profits)
-
   for (let i = 1; i < k + 1; i++) {
     let maxThusFar = -Infinity;
     for (let j = 1; j < arr.length; j++) {
@@ -219,37 +217,36 @@ function maxProfits(arr, k) {
   }
 
   return profits[k][arr.length - 1];
-
-  // let maxProfit = 0; // initialize max
-
-  // let lowestPrice = arr[0];
-
-  // for (let i = 1; i < arr.length; i++) {
-  //   let price = arr[i];
-
-  //   if (price < lowestPrice) lowestPrice = price;
-
-  //   let profit = price - lowestPrice;
-
-  //   maxProfit = Math.max(profit, maxProfit);
-  // }
-  // return maxProfit;
-  // let maxProfit = 0; // initialize max
-
-  // let lowestPrice = arr[0];
-
-  // for (let i = 1; i < arr.length; i++) {
-  //   let price = arr[i];
-
-  //   if (price < lowestPrice) lowestPrice = price;
-
-  //   let profit = price - lowestPrice;
-
-  //   maxProfit = Math.max(profit, maxProfit);
-  // }
-  // return maxProfit;
 }
 
+// let maxProfit = 0; // initialize max
+
+// let lowestPrice = arr[0];
+
+// for (let i = 1; i < arr.length; i++) {
+//   let price = arr[i];
+
+//   if (price < lowestPrice) lowestPrice = price;
+
+//   let profit = price - lowestPrice;
+
+//   maxProfit = Math.max(profit, maxProfit);
+// }
+// return maxProfit;
+// let maxProfit = 0; // initialize max
+
+// let lowestPrice = arr[0];
+
+// for (let i = 1; i < arr.length; i++) {
+//   let price = arr[i];
+
+//   if (price < lowestPrice) lowestPrice = price;
+
+//   let profit = price - lowestPrice;
+
+//   maxProfit = Math.max(profit, maxProfit);
+// }
+// return maxProfit;
 function main() {
   // let BST = new BinarySearchTree();
 

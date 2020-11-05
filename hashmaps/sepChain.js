@@ -154,8 +154,49 @@ class HashMap {
     if (this._hashTable[index] === undefined) {
       throw new Error("Key error");
     }
-    return this._hashTable[index].value;
+    return this._hashTable[index];
   }
+
+
+  delete(key) {
+    const index = this._findSlot(key);
+    const slot = this._hashTable[index];
+    if (slot === undefined) {
+      throw new Error("Key error");
+    }
+    slot.DELETED = true;
+    this.length--;
+    this._deleted++;
+  }
+
+  _findSlot(key) {
+    const hash = HashMap._hashString(key);
+    const start = hash % this._capacity;
+
+    for (let i = start; i < start + this._capacity; i++) {
+      const index = i % this._capacity;
+      const slot = this._hashTable[index];
+      if (slot === undefined || (slot.head.value.key === key && !slot.DELETED)) {
+        return index;
+      }
+    }
+  }
+
+  _resize(size) {
+    const oldSlots = this._hashTable;
+    this._capacity = size;
+    // Reset the length - it will get rebuilt as you add the items back
+    this.length = 0;
+    this._deleted = 0;
+    this._hashTable = [];
+
+    for (const slot of oldSlots) {
+      if (slot !== undefined && !slot.DELETED) {
+        this.set(slot.key, slot.value);
+      }
+    }
+  }
+
 
   set(key, value) {
     let node = {
@@ -181,50 +222,11 @@ class HashMap {
     }
     else {
       let list = this.get(key);
-      list.insertLast(node);
+      list.insertLast(node, null);
 
     }
     //newList.insertLast(node);
     
-  }
-
-  delete(key) {
-    const index = this._findSlot(key);
-    const slot = this._hashTable[index];
-    if (slot === undefined) {
-      throw new Error("Key error");
-    }
-    slot.DELETED = true;
-    this.length--;
-    this._deleted++;
-  }
-
-  _findSlot(key) {
-    const hash = HashMap._hashString(key);
-    const start = hash % this._capacity;
-
-    for (let i = start; i < start + this._capacity; i++) {
-      const index = i % this._capacity;
-      const slot = this._hashTable[index];
-      if (slot === undefined || (slot.key === key && !slot.DELETED)) {
-        return index;
-      }
-    }
-  }
-
-  _resize(size) {
-    const oldSlots = this._hashTable;
-    this._capacity = size;
-    // Reset the length - it will get rebuilt as you add the items back
-    this.length = 0;
-    this._deleted = 0;
-    this._hashTable = [];
-
-    for (const slot of oldSlots) {
-      if (slot !== undefined && !slot.DELETED) {
-        this.set(slot.key, slot.value);
-      }
-    }
   }
 
   static _hashString(string) {

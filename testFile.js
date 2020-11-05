@@ -58,12 +58,12 @@ function subFinder(str, length=0, subStr) {
 
 //let string = "abcdefg";
 
-console.log(subFinder('riddle'))
+console.log(subFinder('rodrigo'))
 
 
-const arr1 = [3, [ 8, [ 5, null, null], null], [ 7, null, null]]
+// const arr1 = [3, [ 8, [ 5, null, null], null], [ 7, null, null]]
 
-console.log(arr1);
-console.log(arr1.slice(0,1));
-let arr2 = arr1.slice(1)
-console.log(arr2.slice(1));
+// console.log(arr1);
+// console.log(arr1.slice(0,1));
+// let arr2 = arr1.slice(1)
+// console.log(arr2.slice(1));

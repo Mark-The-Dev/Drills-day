@@ -137,57 +137,59 @@ function oBank(q){
   return 'This was 10 people in 10 mins!';
 }
 
-function main() {
-  //Q6:
-  // let starTrekQ = new Queue();
-  // starTrekQ.enqueue("Kirk");
-  // starTrekQ.enqueue("Spock");
-  // starTrekQ.enqueue("Uhura");
-  // starTrekQ.enqueue("Sulu");
-  // starTrekQ.enqueue("Checkov");
-  // console.log(display(starTrekQ));
-  // firstToLast(starTrekQ);
-  // console.log(display(starTrekQ));
+// function Qmain() {
+//   //Q6:
+//   // let starTrekQ = new Queue();
+//   // starTrekQ.enqueue("Kirk");
+//   // starTrekQ.enqueue("Spock");
+//   // starTrekQ.enqueue("Uhura");
+//   // starTrekQ.enqueue("Sulu");
+//   // starTrekQ.enqueue("Checkov");
+//   // console.log(display(starTrekQ));
+//   // firstToLast(starTrekQ);
+//   // console.log(display(starTrekQ));
   
   
   
   
-  // //console.log(peek(starTrekQ));
-  // console.log(isEmpty(starTrekQ));
-  // starTrekQ.dequeue();
-  // starTrekQ.dequeue();
-  // console.log(display(starTrekQ));
-  //Q9
-  // let dancers = [
-  //   "Female Jane",
-  //   "Male Frank",
-  //   "Male John",
-  //   "Male Sherlock",
-  //   "Female Madonna",
-  //   "Male David",
-  //   "Male Christopher",
-  //   "Female Beyonce",
-  // ];
-  // console.log(pairDancer(dancers));
-  //console.log(Math.random())
+//   // //console.log(peek(starTrekQ));
+//   // console.log(isEmpty(starTrekQ));
+//   // starTrekQ.dequeue();
+//   // starTrekQ.dequeue();
+//   // console.log(display(starTrekQ));
+//   //Q9
+//   // let dancers = [
+//   //   "Female Jane",
+//   //   "Male Frank",
+//   //   "Male John",
+//   //   "Male Sherlock",
+//   //   "Female Madonna",
+//   //   "Male David",
+//   //   "Male Christopher",
+//   //   "Female Beyonce",
+//   // ];
+//   // console.log(pairDancer(dancers));
+//   //console.log(Math.random())
 
 
-  //Q10
+//   //Q10
 
-  let bankers = new Queue;
-  bankers.enqueue('Larry');
-  bankers.enqueue('Jerry');
-  bankers.enqueue('Fairy');
-  bankers.enqueue('Mary');
-  bankers.enqueue('Harry');
-  bankers.enqueue('Scarey');
-  bankers.enqueue('Terry');
-  bankers.enqueue('Gary');
-  bankers.enqueue('Darry');
-  bankers.enqueue('Perry');
-  //console.log(display(bankers));
-  console.log(oBank(bankers));
+//   let bankers = new Queue;
+//   bankers.enqueue('Larry');
+//   bankers.enqueue('Jerry');
+//   bankers.enqueue('Fairy');
+//   bankers.enqueue('Mary');
+//   bankers.enqueue('Harry');
+//   bankers.enqueue('Scarey');
+//   bankers.enqueue('Terry');
+//   bankers.enqueue('Gary');
+//   bankers.enqueue('Darry');
+//   bankers.enqueue('Perry');
+//   //console.log(display(bankers));
+//   console.log(oBank(bankers));
 
-}
+// }
 
-main();
+// Qmain();
+
+module.exports = Queue; 

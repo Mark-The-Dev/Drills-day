@@ -1,3 +1,5 @@
+const Queue = require("../StackAndQueues/queue");
+
 class BinarySearchTree {
   constructor(key = null, value = null, parent = null) {
     this.key = key;
@@ -124,211 +126,166 @@ class BinarySearchTree {
     }
     return this.left._findMin();
   }
+
+  bfs(tree) {
+    let values = [];
+    const queue = new Queue(); // Assuming a Queue is implemented (refer to previous lesson on Queue)
+    const node = tree;
+    console.log(node);
+    queue.enqueue(node);
+    while (queue.first) {
+      const node = queue.dequeue(); //remove from the queue
+      values.push(node.value); // add that value from the queue to an array
+
+      if (node.left) {
+        queue.enqueue(node.left); //add left child to the queue
+      }
+
+      if (node.right) {
+        queue.enqueue(node.right); // add right child to the queue
+      }
+    }
+
+    return values;
+  }
 }
 
-function heightOfTree(b) {
-  // let lPath= b.left;
-  // let rPath= b.right;
+function inOrder(b, arr = []) {
+  if (b !== null) {
+    inOrder(b.left, arr);
+    arr.push(b.key);
+    inOrder(b.right, arr);
+  }
+  return arr;
+}
 
+function preOrder(b, arr = []) {
+  if (b !== null) {
+    arr.push(b.key);
+    preOrder(b.left, arr);
+    preOrder(b.right, arr);
+  }
+  return arr;
+}
+
+function postOrder(b, arr = []) {
+  if (b !== null) {
+    postOrder(b.left, arr);
+    postOrder(b.right, arr);
+    arr.push(b.key);
+  }
+  return arr;
+}
+
+function postOrderAlt(b, arr = []) {
   if (b === null) {
+    return;
+  }
+  postOrder(b.left, arr);
+  postOrder(b.right, arr);
+  arr.push(b.key);
+  return arr;
+}
+
+function funRec(num) {
+  if (num === 0) {
+    return;
+  }
+  console.log(num);
+
+  funRec(num - 1);
+
+  return;
+}
+
+function maxProfits(arr, k) {
+  if (!arr.length) {
     return 0;
   }
-
-  let lHeight = heightOfTree(b.left);
-  let rHeight = heightOfTree(b.right);
-
-  if (lHeight > rHeight) {
-    return lHeight + 1;
-  } else {
-    return rHeight + 1;
+  const profits = [];
+  for (let i = 0; i < k + 1; i++) {
+    const row = new Array(arr.length).fill(0);
+    profits.push(row);
   }
-}
 
-function isItSearch(b, firstNode) {
-  let lPath = b.left;
-  let rPath = b.right;
+  //console.log(profits)
 
-  while (lPath !== null) {
-    if (firstNode < lPath.key || firstNode < lPath.key) {
-      return false;
+  for (let i = 1; i < k + 1; i++) {
+    let maxThusFar = -Infinity;
+    for (let j = 1; j < arr.length; j++) {
+      maxThusFar = Math.max(maxThusFar, profits[i - 1][j - 1] - arr[j - 1]);
+      profits[i][j] = Math.max(profits[i][j - 1], maxThusFar + arr[j]);
     }
-    lPath = lPath.left;
   }
 
-  while (rPath !== null) {
-    if (firstNode > rPath.key || firstNode > rPath.key) {
-      return false;
-    }
-    rPath = rPath.right;
-  }
-  return true;
-}
+  return profits[k][arr.length - 1];
 
-function thirdLarge(b, arr = []) {
-  if (b === null) {
-    let sorted = arr.sort((a,b) => {
-      return a-b;
-    });
-    
-    return sorted[sorted.length - 3];
-  }
-  arr.push(b.key);
+  // let maxProfit = 0; // initialize max
 
-  let lHeight = thirdLarge(b.left, arr);
-  let rHeight = thirdLarge(b.right, arr);
+  // let lowestPrice = arr[0];
 
-  if (lHeight > rHeight) {
-    return lHeight; 
-  } else {
-    return rHeight;
-  }
+  // for (let i = 1; i < arr.length; i++) {
+  //   let price = arr[i];
 
-}
+  //   if (price < lowestPrice) lowestPrice = price;
 
-function isBalanced(b){
-  
-  let lh = heightOfTree(b.left);
-  let rh = heightOfTree(b.right);
+  //   let profit = price - lowestPrice;
 
+  //   maxProfit = Math.max(profit, maxProfit);
+  // }
+  // return maxProfit;
+  // let maxProfit = 0; // initialize max
 
-  if(lh > rh){
-    if(rh + 1 !== lh){
-      return false;
-    } 
-  }
+  // let lowestPrice = arr[0];
 
-  if (rh > lh){
-    if(lh + 1 !== rh){
-      return false;
-    } 
-  }
+  // for (let i = 1; i < arr.length; i++) {
+  //   let price = arr[i];
 
-  return true;
+  //   if (price < lowestPrice) lowestPrice = price;
 
+  //   let profit = price - lowestPrice;
 
-}
-
-
-
-
-// function displayKey(b) {
-//   let key = b;
-//   let leftStr ='Left Path:';
-//   let rightStr = 'Right Path:';
-
-//   while (key !== null) {
-//     leftStr += ` (${key.key}) `;
-//     key = key.left;
-//   }
-//   //console.log(leftStr);
-
-//   key = b;
-//   while (key !== null) {
-//     rightStr += ` (${key.key}) `;
-//     key = key.right;
-//   }
-//   //console.log(rightStr);
-//   return [leftStr, rightStr];
-// }
-
-
-function isSame(arr1, arr2){
-
-  if(arr1.length !== arr2.length || arr1[0] !== arr2[0]){
-    return false;
-  }
-
-  let highArr1 = [];
-  let highArr2 = [];
-  let lowArr1 = [];
-  let lowArr2 = [];
-
-
-  for(let i=1; i< arr1.length; i++){
-    if(arr1[i] > arr1[0]){
-      highArr1.push(arr1[i]);
-    } else {
-      lowArr1.push(arr1[i]);
-    }
-
-    if (arr2[i] > arr2[0]){
-      highArr2.push(arr2[i]);
-    } else{
-      lowArr2.push(arr2[i]);
-    }
-
-  }
-  // if the start and end leafs are the same return true 
-  if(highArr1[0] === highArr2[0] && lowArr1[0] === lowArr2[0] && (highArr1[highArr1.length - 1]) + (highArr1[highArr1.length - 2]) === (highArr2[highArr2.length - 1]) + (highArr2[highArr2.length - 2]) && (lowArr1[lowArr1.length - 1]) + (lowArr1[lowArr1.length - 2]) === (lowArr2[lowArr2.length - 1]) + (lowArr2[lowArr2.length - 2])){
-    return true;
-  } else {
-    return false;
-  }
-
+  //   maxProfit = Math.max(profit, maxProfit);
+  // }
+  // return maxProfit;
 }
 
 function main() {
-  //Q3
-  let BST = new BinarySearchTree();
+  // let BST = new BinarySearchTree();
 
-  BST.insert(3);
-  BST.insert(1);
-  BST.insert(4);
-  BST.insert(6);
-  BST.insert(9);
-  BST.insert(2);
-  BST.insert(5);
-  BST.insert(7);
-  console.log(BST);
-  //Q5
+  // BST.insert(25);
+  // BST.insert(15);
+  // BST.insert(50);
+  // BST.insert(10);
+  // BST.insert(24);
+  // BST.insert(35);
+  // BST.insert(70);
+  // BST.insert(4);
+  // BST.insert(12);
+  // BST.insert(18);
+  // BST.insert(31);
+  // BST.insert(44);
+  // BST.insert(66);
+  // BST.insert(90);
+  // BST.insert(22);
+  // console.log(inOrder(BST));
+  // console.log(preOrder(BST));
+  // console.log(postOrder(BST));
 
-  //console.log(heightOfTree(BST));
+  // Q6!
+  // let co = new BinarySearchTree();
+  // co.insert(5,'Picard');
+  // co.insert(3,'Riker');
+  // co.insert(6,'Data');
+  // co.insert(2,'Worf');
+  // co.insert(4,'LaForge');
+  // co.insert(1,'Security');
+  // co.insert(8,'Crusher');
+  // co.insert(7,'Selar');
+  // console.log(co.bfs(co));
+  console.log(maxProfits([128, 97, 121, 123, 98, 97, 105], 3));
 
-  //Q6
-  //console.log(isItSearch(BST, 3));
-
-  //Q7
-  //console.log(thirdLarge(BST));
-  //console.log(thirdLarge(BST));
-
-  //Q8
-
-  //console.log(isBalanced(BST));
-
-  // Q9
-  //console.log(isSame([3, 5, 4, 6, 1, 0, 2], [3, 1, 5, 2, 4, 6, 0]));
-
-  // let BSTE = new BinarySearchTree();
-  // BSTE.insert("E");
-  // BSTE.insert("A");
-  // BSTE.insert("S");
-  // BSTE.insert("Y");
-  // BSTE.insert("Q");
-  // BSTE.insert("U");
-  // BSTE.insert("E");
-  // BSTE.insert("S");
-  // BSTE.insert("T");
-  // BSTE.insert("I");
-  // BSTE.insert("O");
-  // BSTE.insert("N");
-  // console.log(BSTE);
+  //funRec(10);
 }
-
-//Q4
-
-/*
-Whats this do?
-returns the total value of the tree.
-complexity: O(2^n)
-function tree(t){
-    if(!t){
-        return 0;
-    }
-    return tree(t.left) + t.value + tree(t.right)
-}
-
-*/
-
-//Q5
 
 main();
